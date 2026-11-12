@@ -1,0 +1,2571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmConnect | Smart Agriculture</title>
+
+  <style>
+:root {
+  --green: #216b3a;
+  --dark-green: #164b2b;
+  --light-green: #eef7ed;
+  --cream: #fbfaf4;
+  --text: #26352a;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Navigation */
+header {
+  background: var(--white);
+  padding: 15px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--green);
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.brand-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+nav a {
+  font-size: 14px;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #4b9a47;
+}
+
+/* Hero section */
+.hero {
+  padding: 65px 7%;
+  background: linear-gradient(135deg, #edf7e9, #dcefd7);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 45px;
+}
+
+.hero h1 {
+  color: var(--dark-green);
+  font-size: clamp(32px, 4vw, 49px);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 17px;
+  margin-bottom: 25px;
+  max-width: 600px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn {
+  display: inline-block;
+  background: var(--green);
+  color: var(--white);
+  padding: 12px 22px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: var(--dark-green);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--green);
+  border: 1px solid var(--green);
+  margin-left: 8px;
+}
+
+.btn-secondary:hover {
+  background: #e8f2e5;
+  color: var(--dark-green);
+}
+
+/* General sections */
+section {
+  padding: 65px 7%;
+  scroll-margin-top: 90px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading h2 {
+  color: var(--dark-green);
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.section-heading p {
+  color: #627064;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Feature cards */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.card h3 {
+  color: var(--green);
+  margin-bottom: 10px;
+  font-size: 21px;
+}
+
+.card p {
+  margin-bottom: 15px;
+  color: #536055;
+}
+
+.card .btn {
+  margin-top: 5px;
+}
+
+/* Machinery request form */
+.request-section {
+  background: var(--light-green);
+}
+
+.form-container {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.form-group {
+  margin-bottom: 17px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccd7cc;
+  border-radius: 7px;
+  background: #fff;
+  color: var(--text);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #8bbd88;
+  border-color: var(--green);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-note {
+  font-size: 13px;
+  color: #657166;
+  margin-top: 12px;
+}
+
+/* Crop care section */
+.crop-care {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.crop-care img {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.crop-care h2 {
+  color: var(--dark-green);
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.crop-care ul {
+  padding-left: 22px;
+  margin: 15px 0 22px;
+}
+
+.crop-care li {
+  margin-bottom: 10px;
+}
+
+.notice {
+  background: #fff5dc;
+  border-left: 4px solid #d6a12a;
+  padding: 14px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Voice assistant */
+.voice-section {
+  background: var(--light-green);
+}
+
+.voice-container {
+  max-width: 850px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 30px;
+  align-items: center;
+  background: var(--white);
+  border-radius: 15px;
+  padding: 25px;
+}
+
+.voice-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.voice-container h3 {
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.voice-container select {
+  margin: 10px 0 15px;
+}
+
+.voice-container p {
+  margin-bottom: 12px;
+}
+
+#voiceStatus {
+  color: var(--green);
+  font-weight: bold;
+  margin-top: 12px;
+  min-height: 24px;
+}
+
+/* Footer */
+footer {
+  background: #173f27;
+  color: var(--white);
+  padding: 30px 7%;
+  text-align: center;
+}
+
+footer p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image img {
+    height: 300px;
+  }
+
+  .services {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .crop-care {
+    grid-template-columns: 1fr;
+  }
+
+  .voice-container {
+    grid-template-columns: 180px 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    justify-content: center;
+  }
+
+  nav {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero {
+    padding: 40px 5%;
+  }
+
+  section {
+    padding: 45px 5%;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: auto;
+  }
+
+  .voice-container {
+    grid-template-columns: 1fr;
+  }
+
+  .voice-image {
+    height: 200px;
+  }
+
+  .btn-secondary {
+    margin: 10px 0 0;
+  }
+}
+
+/* Page banner for inner pages */
+.page-banner {
+  padding: 50px 7% 10px;
+  background: linear-gradient(135deg, #edf7e9, #dcefd7);
+}
+.page-banner a.back {
+  display: inline-block;
+  color: var(--green);
+  font-weight: bold;
+  font-size: 14px;
+}
+.page-banner a.back:hover { color: var(--dark-green); }
+nav a.active { color: #4b9a47; }
+
+/* Crop guidance finder */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.crop-search {
+  max-width: 640px; margin: 0 auto 18px; display: flex; gap: 10px;
+}
+.crop-search input { flex: 1; min-width: 0; }
+.chips {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  max-width: 900px; margin: 0 auto 28px;
+}
+.chip {
+  background: var(--white); color: var(--green); border: 1px solid var(--green);
+  border-radius: 999px; padding: 6px 14px; cursor: pointer; font-size: 14px;
+  font-weight: bold; transition: background 0.2s;
+}
+.chip:hover { background: #e8f2e5; }
+.crop-result {
+  max-width: 1000px; margin: 0 auto; background: var(--white);
+  border-radius: 14px; padding: 26px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.crop-result > h3 { color: var(--green); font-size: 26px; margin-bottom: 18px; }
+.guide-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px; margin-bottom: 20px;
+}
+.guide-block {
+  background: var(--light-green); border-radius: 12px; padding: 18px;
+}
+.guide-block h4 { color: var(--dark-green); font-size: 18px; margin-bottom: 10px; }
+.guide-list { padding-left: 18px; }
+.guide-list li { margin-bottom: 9px; }
+.stage-title { font-weight: bold; margin: 12px 0 6px; color: var(--dark-green); }
+.stage-list { padding-left: 22px; }
+/* Language switcher */
+.lang-switcher { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; background: var(--white); color: var(--green); border: 1px solid var(--green); border-radius: 999px; padding: 6px 12px; cursor: pointer; font-weight: bold; font-size: 14px; }
+.lang-btn:hover { background: #e8f2e5; }
+.lang-btn svg { width: 18px; height: 18px; }
+.lang-menu { position: absolute; right: 0; top: calc(100% + 8px); background: var(--white); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); list-style: none; padding: 8px; min-width: 200px; z-index: 30; }
+.lang-menu[hidden] { display: none; }
+.lang-menu button { display: block; width: 100%; text-align: left; background: none; border: none; padding: 9px 12px; border-radius: 8px; cursor: pointer; font-size: 15px; color: var(--text); }
+.lang-menu button:hover { background: var(--light-green); }
+.lang-menu button.selected { background: var(--light-green); color: var(--dark-green); font-weight: bold; }
+.lang-credit { font-size: 11px; color: #657166; padding: 6px 12px 2px; }
+.lang-status { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--dark-green); color: var(--white); padding: 10px 18px; border-radius: 999px; font-size: 14px; z-index: 50; display: none; max-width: 90%; text-align: center; }
+.lang-status.show { display: block; }
+
+/* Hide the original Google Translate widget and banner (we use our own button) */
+#google_translate_element { position: absolute; left: -9999px; top: 0; height: 0; overflow: hidden; }
+iframe.skiptranslate, .goog-te-banner-frame, .goog-te-balloon-frame, #goog-gt-tt,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf, .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }
+body { top: 0 !important; position: static !important; }
+
+.about-crop { display: flex; gap: 16px; align-items: flex-start; background: var(--cream); border: 1px solid #e1eadf; border-radius: 12px; padding: 14px; margin-bottom: 18px; }
+.about-crop img { width: 120px; height: 90px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+.about-crop p { margin: 0 0 6px; }
+.about-crop a { color: var(--green); font-weight: bold; font-size: 14px; }
+@media (max-width: 700px) { .about-crop { flex-direction: column; } .about-crop img { width: 100%; height: 160px; } }
+.source-note { margin-top: 12px; font-size: 12px; color: #657166; text-align: right; }
+.crop-empty {
+  max-width: 640px; margin: 0 auto; background: var(--white);
+  padding: 20px; border-radius: 12px; text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.crop-empty .chips { margin: 12px 0 0; }
+@media (max-width: 700px) {
+  .guide-grid { grid-template-columns: 1fr; }
+  .crop-search { flex-direction: column; }
+}
+
+
+/* Machinery owners page */
+.request-banner { max-width: 1000px; margin: 0 auto 22px; padding: 14px 18px; border-radius: 10px; background: #eef7ed; color: var(--dark-green); border-left: 4px solid var(--green); font-weight: bold; }
+.request-banner[hidden] { display: none; }
+.owner-filters { max-width: 1000px; margin: 0 auto 18px; display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 16px; background: var(--white); padding: 18px; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.owner-count { max-width: 1000px; margin: 0 auto 14px; color: #627064; font-size: 14px; }
+.owner-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.owner-card { background: var(--white); border-radius: 14px; padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border-top: 4px solid var(--green); display: flex; flex-direction: column; gap: 10px; }
+.owner-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.owner-card h3 { color: var(--green); font-size: 20px; }
+.owner-model { color: #627064; font-size: 13px; }
+.owner-rate { text-align: right; background: var(--light-green); border-radius: 10px; padding: 6px 12px; flex-shrink: 0; }
+.owner-rate strong { display: block; color: var(--dark-green); font-size: 22px; line-height: 1.2; }
+.owner-rate span { font-size: 12px; color: #627064; }
+.owner-info { list-style: none; display: grid; gap: 4px; font-size: 15px; }
+.owner-info b { color: var(--dark-green); }
+.owner-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.owner-tag { background: #fff5dc; color: #7a5a10; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: bold; }
+.owner-call { margin-top: auto; text-align: center; }
+.owner-empty { grid-column: 1 / -1; text-align: center; background: var(--white); padding: 24px; border-radius: 12px; }
+@media (max-width: 700px) {
+  .owner-filters { grid-template-columns: 1fr; }
+  .owner-grid { grid-template-columns: 1fr; }
+}
+
+/* Single-file page switching */
+.page { display: none; }
+.page.active { display: block; }
+.page-banner { padding-bottom: 10px; }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <a href="#home" class="logo notranslate" translate="no">
+      <img
+        src="Farmer.jfif"
+        alt="FarmConnect logo"
+        class="brand-logo"
+      >
+      <span>FarmConnect</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#machinery">Rent Machinery</a>
+      <a href="#machinery-list">Machinery Owners</a>
+      <a href="#crop-care">Crop Care</a>
+      <a href="#experts">Experts</a>
+      <a href="#voice">Voice Assistant</a>
+    </nav>
+
+    <div class="lang-switcher notranslate" translate="no">
+      <button
+        type="button"
+        id="langButton"
+        class="lang-btn"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="langMenu"
+        aria-label="Change language"
+        title="Change language"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M2 12h20"></path>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <span id="langCurrent">EN</span>
+      </button>
+
+      <ul id="langMenu" class="lang-menu" role="menu" hidden>
+        <li><button type="button" role="menuitemradio" data-lang="en">English</button></li>
+        <li><button type="button" role="menuitemradio" data-lang="kn">ಕನ್ನಡ (Kannada)</button></li>
+        <li><button type="button" role="menuitemradio" data-lang="hi">हिन्दी (Hindi)</button></li>
+        <li><button type="button" role="menuitemradio" data-lang="te">తెలుగు (Telugu)</button></li>
+        <li><button type="button" role="menuitemradio" data-lang="ta">தமிழ் (Tamil)</button></li>
+        <li class="lang-credit">Auto-translated by Google Translate</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hidden container used by Google Translate -->
+  <div id="google_translate_element"></div>
+  <div id="langStatus" class="lang-status notranslate" translate="no" role="status" aria-live="polite"></div>
+
+  
+  <main>
+
+    <!-- HOME PAGE -->
+    <div class="page active" id="page-home">
+
+    <section class="hero" id="home">
+      <div>
+        <h1>Smart Farming for a Better Future</h1>
+
+        <p>
+          FarmConnect helps farmers discover agricultural machinery,
+          learn about crop safety, connect with agricultural experts,
+          and access farming information in their preferred language.
+        </p>
+
+        <a href="#services" class="btn">Explore Services</a>
+        <a href="#machinery" class="btn btn-secondary">Request Machinery</a>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="tractor.jpg"
+          alt="Tractor working in a green agricultural field"
+        >
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="section-heading">
+        <h2>Our Services</h2>
+        <p>
+          Helpful digital tools designed to make farming easier,
+          safer, and more accessible.
+        </p>
+      </div>
+
+      <div class="services">
+
+        <article class="card">
+          <img
+            src="machine.jpg"
+            alt="Agricultural machinery available for rent"
+            class="card-image"
+            loading="lazy"
+          >
+
+          <h3>Machinery Rental & Lease</h3>
+
+          <p>
+            Find tractors, harvesters, rotavators, seed drills,
+            sprayers, and other agricultural equipment.
+          </p>
+
+          <a href="#machinery" class="btn">Find Machinery</a>
+        </article>
+
+        <article class="card">
+          <img
+            src="pest.jpg"
+            alt="Healthy crops growing in a field"
+            class="card-image"
+            loading="lazy"
+          >
+
+          <h3>Crop & Pesticide Information</h3>
+
+          <p>
+            Learn about pest identification, crop protection,
+            safe pesticide handling, and official agricultural guidance.
+          </p>
+
+          <a href="#crop-care" class="btn">Learn More</a>
+        </article>
+
+        <article class="card">
+          <img
+            src="Expert.jpg"
+            alt="Agricultural specialist advising a farmer"
+            class="card-image"
+            loading="lazy"
+          >
+
+          <h3>Connect with Experts</h3>
+
+          <p>
+            Find out how to seek help from agricultural specialists
+            for crop problems, soil health, and farming practices.
+          </p>
+
+          <a href="#crop-guide" class="btn">Find Guidance</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Machinery request form -->
+    <section class="request-section" id="machinery">
+      <div class="section-heading">
+        <h2>Request Agricultural Machinery</h2>
+        <p>
+          Tell us which equipment you need and when you need it.
+        </p>
+      </div>
+
+      <div class="form-container">
+        <form id="machineryForm">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="farmerName">Farmer Name</label>
+              <input
+                type="text"
+                id="farmerName"
+                name="farmerName"
+                placeholder="Enter your name"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter your phone number"
+                pattern="[0-9+\-\s]{7,15}"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="equipment">Select Equipment</label>
+              <select id="equipment" name="equipment" required>
+                <option value="">Choose machinery</option>
+                <option value="Tractor">Tractor</option>
+                <option value="Harvester">Harvester</option>
+                <option value="Rotavator">Rotavator</option>
+                <option value="Seed Drill">Seed Drill</option>
+                <option value="Sprayer">Sprayer</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="rentalType">Rental Type</label>
+              <select id="rentalType" name="rentalType" required>
+                <option value="">Choose an option</option>
+                <option value="Hourly Rental">Hourly Rental</option>
+                <option value="Daily Rental">Daily Rental</option>
+                <option value="Lease">Lease</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="requestDate">Required Date</label>
+              <input
+                type="date"
+                id="requestDate"
+                name="requestDate"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="location">Village / Location</label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Enter your village"
+                required
+              >
+            </div>
+
+            <div class="form-group full-width">
+              <label for="details">Additional Details</label>
+              <textarea
+                id="details"
+                name="details"
+                placeholder="Describe your equipment requirements..."
+              ></textarea>
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn">
+            Submit Request
+          </button>
+
+          <p class="form-note">
+            Your details are used only to process your machinery request
+            and to contact you on the phone number provided.
+          </p>
+        </form>
+
+        <div id="formMessage" role="status" aria-live="polite"></div>
+
+        <p class="form-note" style="text-align:center;">
+          Want to see who rents out machinery?
+          <a href="#machinery-list" style="color:var(--green);font-weight:bold;">View Machinery Owners</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Voice assistant -->
+    <section class="voice-section" id="voice">
+      <div class="section-heading">
+        <h2>Regional Language Voice Assistant</h2>
+        <p>
+          Listen to a sample farming message in your preferred language.
+        </p>
+      </div>
+
+      <div class="voice-container">
+
+        <img
+          src="voice.png"
+          alt="Farmer using a mobile phone for agricultural information"
+          class="voice-image"
+          loading="lazy"
+        >
+
+        <div>
+          <h3>FarmConnect Voice Support</h3>
+
+          <p>
+            Select a language and listen to a short introduction
+            to the FarmConnect platform.
+          </p>
+
+          <label for="language">Choose Language</label>
+
+          <select id="language" class="notranslate" translate="no">
+            <option value="en-IN">English</option>
+            <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
+            <option value="hi-IN">हिन्दी (Hindi)</option>
+            <option value="ta-IN">தமிழ் (Tamil)</option>
+            <option value="te-IN">తెలుగు (Telugu)</option>
+          </select>
+
+          <button type="button" class="btn" id="speakButton">
+            Listen
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="stopButton"
+          >
+            Stop
+          </button>
+
+          <p id="voiceStatus" role="status" aria-live="polite"></p>
+        </div>
+
+      </div>
+    </section>
+  
+    </div>
+
+    <!-- MACHINERY OWNERS PAGE -->
+    <div class="page" id="page-machinery-list">
+
+    <div class="page-banner">
+      <a href="#machinery" class="back">&larr; Back to Request Form</a>
+    </div>
+
+    <section id="machinery-list">
+      <div class="section-heading">
+        <h2>Machinery Owners</h2>
+        <p>
+          Farmers who rent out or lease their machinery. Call the owner
+          directly to agree on the date and the final price.
+        </p>
+      </div>
+
+      <div id="requestBanner" class="request-banner" role="status" aria-live="polite" hidden></div>
+
+      <div class="owner-filters">
+        <div>
+          <label for="ownerEquip">Machinery</label>
+          <select id="ownerEquip">
+            <option value="">All machinery</option>
+            <option value="Tractor">Tractor</option>
+            <option value="Harvester">Harvester</option>
+            <option value="Rotavator">Rotavator</option>
+            <option value="Seed Drill">Seed Drill</option>
+            <option value="Sprayer">Sprayer</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="ownerVillage">Village</label>
+          <input type="text" id="ownerVillage" placeholder="Search by village or owner name">
+        </div>
+        <div>
+          <label for="ownerSort">Sort by</label>
+          <select id="ownerSort">
+            <option value="low">Lowest hourly rate</option>
+            <option value="high">Highest hourly rate</option>
+            <option value="village">Village (A to Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="ownerCount" class="owner-count" aria-live="polite"></p>
+      <div id="ownerGrid" class="owner-grid"></div>
+      <p id="ownerSource" class="source-note"></p>
+    </section>
+
+    </div>
+
+    <!-- CROP CARE PAGE -->
+    <div class="page" id="page-crop-care">
+
+    <div class="page-banner">
+      <a href="#services" class="back">&larr; Back to Services</a>
+    </div>
+
+
+    <!-- Crop care -->
+    <section id="crop-care">
+      <div class="crop-care">
+
+        <img
+          src="Crop.jpg"
+          alt="Agricultural crops being inspected for plant health"
+          loading="lazy"
+        >
+
+        <div>
+          <h2>Crop Care & Pesticide Safety</h2>
+
+          <p>
+            Healthy crops start with correctly identifying the problem
+            and choosing an appropriate, approved solution.
+          </p>
+
+          <ul>
+            <li>Identify pests and symptoms before taking action.</li>
+            <li>Consult qualified agricultural experts when unsure.</li>
+            <li>Use only products approved for the specific crop and pest.</li>
+            <li>Follow the product label and all safety instructions.</li>
+            <li>Wear the recommended protective equipment.</li>
+          </ul>
+
+          <div class="notice">
+            <strong>Safety notice:</strong>
+            Do not choose a pesticide or its dosage based only on a
+            general online description. Ask a qualified agricultural
+            specialist and follow the approved product label.
+          </div>
+
+          <a
+            class="btn"
+            href="https://farmer.gov.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit Farmer Portal
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  
+    </div>
+
+    <!-- EXPERTS PAGE -->
+    <div class="page" id="page-experts">
+
+    <div class="page-banner">
+      <a href="#services" class="back">&larr; Back to Services</a>
+    </div>
+
+      <section id="crop-guide">
+        <div class="section-heading">
+          <h2>Crop Guidance Finder</h2>
+          <p>
+            Type a crop name to see its growth stages, common diseases,
+            pest identification and crop management tips.
+          </p>
+        </div>
+
+        <form id="cropForm" class="crop-search" autocomplete="off">
+          <label for="cropInput" class="sr-only">Crop name</label>
+          <input
+            type="text"
+            id="cropInput"
+            list="cropList"
+            placeholder="Type a crop name, e.g. rice, tomato, ragi"
+          >
+          <datalist id="cropList"></datalist>
+          <button type="submit" class="btn">Search</button>
+        </form>
+
+        <div class="chips" id="cropChips" aria-label="Quick select crops"></div>
+
+        <div id="cropResults" aria-live="polite"></div>
+      </section>
+
+
+
+
+    <!-- Experts -->
+    <section id="experts">
+      <div class="section-heading">
+        <h2>Connect with Agricultural Experts</h2>
+        <p>
+          Get professional guidance for crop diseases, pest management,
+          soil health, and agricultural practices.
+        </p>
+      </div>
+
+      <div class="services">
+
+        <article class="card">
+          <img
+            src="Sepcialist.jpg"
+            alt="Agricultural expert working with farmers"
+            class="card-image"
+            loading="lazy"
+          >
+
+          <h3>Crop Specialists</h3>
+
+          <p>
+            Seek advice about crop growth, disease symptoms,
+            pest identification, and crop management.
+          </p>
+
+          <a class="btn" href="#crop-guide">
+            Open Crop Guidance Finder
+          </a>
+        </article>
+
+        <article class="card">
+          <img
+            src="soil.jpg"
+            alt="Crop inspection in an agricultural field"
+            class="card-image"
+            loading="lazy"
+          >
+
+          <h3>Soil & Crop Guidance</h3>
+
+          <p>
+            Learn about soil testing, nutrient management,
+            irrigation, and healthy farming practices.
+          </p>
+
+          <a
+            class="btn"
+            href="https://icar.org.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit ICAR
+          </a>
+        </article>
+
+        <article class="card">
+          <img
+            src="Local.jpg"
+            alt="Farmland and agricultural operations"
+            class="card-image"
+            loading="lazy"
+          >
+
+          <h3>Local Agricultural Support</h3>
+
+          <p>
+            Contact your local agriculture department or
+            Krishi Vigyan Kendra for region-specific advice.
+          </p>
+
+          <a
+            class="btn"
+            href="https://kvk.icar.gov.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Find KVK Resources
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+  
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p><strong>FarmConnect</strong> — Smart Agriculture for Everyone</p>
+    <p>Supporting farmers through technology, information, and connection.</p>
+    <p>&copy; <span id="year"></span> FarmConnect. </p>
+  </footer>
+
+
+  <script>
+
+    // Set the current year in the footer.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Prevent selecting a date in the past.
+    const requestDate = document.getElementById("requestDate");
+    const today = new Date();
+    const localToday = [
+      today.getFullYear(),
+      String(today.getMonth() + 1).padStart(2, "0"),
+      String(today.getDate()).padStart(2, "0")
+    ].join("-");
+
+    requestDate.min = localToday;
+
+    // Machinery request form.
+    // Sends the request to the backend (POST /api/requests) when a server is
+    // running. If no server is reachable (for example, the file was opened
+    // directly), the request is saved in this browser instead.
+    const machineryForm = document.getElementById("machineryForm");
+    const formMessage = document.getElementById("formMessage");
+    const submitBtn = machineryForm.querySelector("button[type=submit]");
+
+    function showMessage(text, ok) {
+      formMessage.textContent = text;
+      formMessage.style.cssText =
+        "margin-top:18px;padding:12px;border-radius:7px;" +
+        (ok ? "background:#eef7ed;color:#164b2b;"
+            : "background:#fdecea;color:#8a1f17;");
+    }
+
+    function saveLocally(payload) {
+      try {
+        const list = JSON.parse(
+          localStorage.getItem("farmconnectRequests") || "[]"
+        );
+        list.push(Object.assign({ savedAt: new Date().toISOString() }, payload));
+        localStorage.setItem("farmconnectRequests", JSON.stringify(list));
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // After a request is submitted, open the Machinery Owners page.
+    let pendingRequest = null;
+    function goToOwners() {
+      window.lastMachineryRequest = pendingRequest;
+      setTimeout(function () {
+        formMessage.textContent = "";
+        formMessage.removeAttribute("style");
+        if (location.hash === "#machinery-list") {
+          route();
+        } else {
+          location.hash = "machinery-list";
+        }
+      }, 1200);
+    }
+
+    machineryForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      if (!this.reportValidity()) {
+        return;
+      }
+
+      const payload = Object.fromEntries(new FormData(this).entries());
+      pendingRequest = payload;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+
+      let handled = false;
+
+      try {
+        const response = await fetch("/api/requests", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        handled = true;
+
+        if (response.ok && result.ok) {
+          showMessage(result.message + " We will contact you soon.", true);
+          this.reset();
+          requestDate.min = localToday;
+          goToOwners();
+        } else {
+          const details = result.errors
+            ? " " + Object.values(result.errors).join(" ")
+            : "";
+          showMessage((result.message || "Something went wrong.") + details, false);
+        }
+      } catch (error) {
+        // No backend available: fall back to saving on this device.
+      }
+
+      if (!handled) {
+        if (saveLocally(payload)) {
+          showMessage(
+            "Your " + payload.equipment + " request was saved on this " +
+            "device. No server is connected yet, so it has not been " +
+            "sent to an owner.", true
+          );
+          this.reset();
+          requestDate.min = localToday;
+          goToOwners();
+        } else {
+          showMessage("Could not send or save your request. Please try again.", false);
+        }
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit Request";
+    });
+
+    // Voice assistant using speech available in the browser.
+    const languageSelect = document.getElementById("language");
+    const voiceStatus = document.getElementById("voiceStatus");
+
+    const messages = {
+      "en-IN":
+        "Welcome to FarmConnect. Find agricultural machinery, " +
+        "learn about crop safety, and connect with agricultural experts.",
+
+      "kn-IN":
+        "ಫಾರ್ಮ್ ಕನೆಕ್ಟ್‌ಗೆ ಸ್ವಾಗತ. ಕೃಷಿ ಯಂತ್ರೋಪಕರಣಗಳ ಮಾಹಿತಿ ಪಡೆಯಿರಿ, " +
+        "ಬೆಳೆಗಳ ಸುರಕ್ಷತೆಯ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ ಮತ್ತು ಕೃಷಿ ತಜ್ಞರನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+
+      "hi-IN":
+        "फार्मकनेक्ट में आपका स्वागत है। कृषि मशीनों की जानकारी प्राप्त करें, " +
+        "फसल सुरक्षा के बारे में जानें और कृषि विशेषज्ञों से जुड़ें।",
+
+      "ta-IN":
+        "ஃபார்ம்கனெக்டுக்கு வரவேற்கிறோம். விவசாய இயந்திரங்களைப் பற்றித் " +
+        "தெரிந்துகொள்ளுங்கள், பயிர் பாதுகாப்பைக் கற்றுக்கொள்ளுங்கள், " +
+        "விவசாய நிபுணர்களைத் தொடர்புகொள்ளுங்கள்.",
+
+      "te-IN":
+        "ఫార్మ్‌కనెక్ట్‌కు స్వాగతం. వ్యవసాయ యంత్రాల వివరాలు తెలుసుకోండి, " +
+        "పంటల భద్రత గురించి నేర్చుకోండి, వ్యవసాయ నిపుణులను సంప్రదించండి."
+    };
+
+    document
+      .getElementById("speakButton")
+      .addEventListener("click", function () {
+        if (!("speechSynthesis" in window)) {
+          voiceStatus.textContent =
+            "Speech playback is not supported by this browser.";
+          return;
+        }
+
+        window.speechSynthesis.cancel();
+
+        const selectedLanguage = languageSelect.value;
+        const utterance = new SpeechSynthesisUtterance(
+          messages[selectedLanguage] || messages["en-IN"]
+        );
+
+        utterance.lang = selectedLanguage;
+        utterance.rate = 0.85;
+
+        utterance.onstart = function () {
+          voiceStatus.textContent = "Playing voice message...";
+        };
+
+        utterance.onend = function () {
+          voiceStatus.textContent = "Voice message finished.";
+        };
+
+        utterance.onerror = function () {
+          voiceStatus.textContent =
+            "Unable to play audio. Check your browser's speech settings.";
+        };
+
+        window.speechSynthesis.speak(utterance);
+      });
+
+    document
+      .getElementById("stopButton")
+      .addEventListener("click", function () {
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+        }
+
+        voiceStatus.textContent = "Voice playback stopped.";
+      });
+  
+
+    // ===== Crop guidance database =====
+    // General educational information. It deliberately contains no pesticide
+    // names or doses: those depend on the crop, region and approved label.
+    const CROPS = [
+      {
+        name: "Rice (Paddy)",
+        aliases: ["rice", "paddy", "dhan", "akki"],
+        facts: [
+          ["Season", "Mainly Kharif (June to November); also Rabi/summer where irrigation is available"],
+          ["Duration", "About 100 to 150 days, depending on the variety"],
+          ["Climate & soil", "Warm and humid, 20 to 35 °C; clay or clay-loam soil that holds water"]
+        ],
+        stages: ["Nursery and seedling", "Transplanting", "Tillering", "Panicle initiation", "Flowering", "Grain filling", "Maturity"],
+        diseases: [
+          ["Blast", "Diamond-shaped spots with grey centres on leaves; neck of the panicle may break"],
+          ["Bacterial leaf blight", "Yellow to white stripes starting from leaf tips and edges; leaves dry out"],
+          ["Sheath blight", "Oval greenish-grey patches on the sheath near the water line"],
+          ["Brown spot", "Round brown spots on leaves and grains, common in poor, nutrient-deficient soils"]
+        ],
+        pests: [
+          ["Stem borer", "Dead central shoot ('dead heart') in young plants; white empty panicles later"],
+          ["Brown planthopper", "Circular yellow-brown drying patches ('hopper burn'); insects at the plant base"],
+          ["Leaf folder", "Leaves folded lengthwise with white streaks inside"],
+          ["Gall midge", "Silver-coloured tube (onion-leaf look) replacing the normal shoot"]
+        ],
+        management: [
+          "Use certified seed and varieties suited to your region and season.",
+          "Avoid excess nitrogen; it increases blast and planthopper attacks.",
+          "Manage water carefully; alternate wetting and drying can reduce disease pressure.",
+          "Keep bunds and fields weed-free and remove stubble after harvest.",
+          "Use light traps or pheromone traps to monitor pests and protect natural enemies such as spiders."
+        ]
+      },
+      {
+        name: "Wheat",
+        aliases: ["wheat", "gehu", "gehun", "godhi"],
+        facts: [
+          ["Season", "Rabi; sown October to December, harvested March to April"],
+          ["Duration", "About 120 to 150 days"],
+          ["Climate & soil", "Cool weather while growing and warm, dry weather at ripening; well-drained loam"]
+        ],
+        stages: ["Germination", "Crown root initiation (about 3 weeks)", "Tillering", "Jointing", "Booting and heading", "Flowering", "Grain filling", "Maturity"],
+        diseases: [
+          ["Yellow (stripe) rust", "Yellow powdery stripes along the leaf veins, common in cool, humid weather"],
+          ["Brown (leaf) rust", "Small orange-brown round pustules scattered on leaves"],
+          ["Powdery mildew", "White powdery growth on leaves and stems"],
+          ["Loose smut", "Ears replaced by black powder that blows away, leaving bare stalks"],
+          ["Karnal bunt", "Some grains partly turn black and smell fishy"]
+        ],
+        pests: [
+          ["Aphids", "Small green or black insects clustered on leaves and ears, with sticky honeydew"],
+          ["Termites", "Plants wilt and dry in patches; roots eaten; soil tunnels present"],
+          ["Pink stem borer", "Dead central shoots and white ears in young crops"],
+          ["Armyworm", "Leaves and ear heads chewed by caterpillars, usually at night"]
+        ],
+        management: [
+          "Sow on time with rust-resistant varieties recommended for your area.",
+          "Treat seed before sowing and use clean, certified seed.",
+          "Irrigate at critical stages: crown root, tillering, jointing, flowering and grain filling.",
+          "Inspect fields weekly from January for rust and report early outbreaks to your agriculture office.",
+          "Remove smut-infected ears carefully in a bag and destroy them."
+        ]
+      },
+      {
+        name: "Maize (Corn)",
+        aliases: ["maize", "corn", "makka", "musukina jola"],
+        facts: [
+          ["Season", "Kharif mainly; Rabi and summer where irrigation exists"],
+          ["Duration", "About 90 to 120 days"],
+          ["Climate & soil", "Warm weather; deep, well-drained loam. Does not tolerate waterlogging"]
+        ],
+        stages: ["Germination", "Knee-high vegetative stage", "Tasseling", "Silking", "Grain filling", "Maturity"],
+        diseases: [
+          ["Turcicum leaf blight", "Long, cigar-shaped grey-green to brown lesions on leaves"],
+          ["Downy mildew", "Yellow stripes on leaves with white fuzzy growth underneath; stunted plants"],
+          ["Common rust", "Small reddish-brown pustules on both leaf surfaces"],
+          ["Stalk rot", "Stalk becomes soft and discoloured near the base; plants lodge near maturity"]
+        ],
+        pests: [
+          ["Fall armyworm", "Ragged holes in leaves, sawdust-like droppings in the whorl, damaged cobs"],
+          ["Stem borer", "Small round holes in leaves and 'dead heart' in young plants"],
+          ["Shoot fly", "Dead centre shoot in seedlings in the first few weeks"],
+          ["Aphids", "Colonies on tassels and leaves with sticky honeydew"]
+        ],
+        management: [
+          "Sow early in the season using seed suited to your region.",
+          "Scout the whorl of young plants every few days for fall armyworm and remove egg masses by hand.",
+          "Ensure drainage, since waterlogging weakens roots.",
+          "Rotate with pulses or legumes and control weeds in the first 30 to 40 days.",
+          "Irrigate at tasseling and silking; water stress at this time reduces yield most."
+        ]
+      },
+      {
+        name: "Cotton",
+        aliases: ["cotton", "kapas", "hatti"],
+        facts: [
+          ["Season", "Kharif; sown April to June depending on region and irrigation"],
+          ["Duration", "About 150 to 180 days or more"],
+          ["Climate & soil", "Warm climate; deep black soil or well-drained loam"]
+        ],
+        stages: ["Germination", "Seedling", "Square (flower bud) formation", "Flowering", "Boll development", "Boll opening and picking"],
+        diseases: [
+          ["Fusarium wilt", "Leaves yellow and wilt; brown streaks inside the stem"],
+          ["Bacterial blight", "Angular water-soaked spots on leaves that turn brown; boll rot"],
+          ["Leaf curl virus", "Leaves curl upward and thicken; stunted plants (spread by whitefly)"],
+          ["Alternaria leaf spot", "Round brown spots with rings on leaves"]
+        ],
+        pests: [
+          ["Pink bollworm", "Rosette (twisted) flowers; pinkish larvae and damaged seeds inside bolls"],
+          ["American bollworm", "Holes in squares and bolls; caterpillar visible on the plant"],
+          ["Whitefly", "Tiny white insects under leaves, sooty mould, leaf curl virus"],
+          ["Jassids and aphids", "Leaf edges curl and turn red or brown ('hopper burn')"]
+        ],
+        management: [
+          "Follow the recommended sowing window and plant refuge rows as advised for Bt cotton.",
+          "Use pheromone traps to track bollworms and check fields weekly.",
+          "Remove and destroy crop residue after harvest to break the pest cycle.",
+          "Avoid mixing cotton with continuous susceptible hosts and rotate crops.",
+          "Avoid spraying without scouting; unnecessary sprays harm natural enemies."
+        ]
+      },
+      {
+        name: "Sugarcane",
+        aliases: ["sugarcane", "sugar cane", "ganna", "kabbu"],
+        facts: [
+          ["Season", "Planted February to March (spring) or October (autumn) in many regions"],
+          ["Duration", "About 10 to 18 months"],
+          ["Climate & soil", "Warm, humid climate; deep, well-drained loam with good water supply"]
+        ],
+        stages: ["Germination (setts)", "Tillering", "Grand growth", "Ripening and maturity"],
+        diseases: [
+          ["Red rot", "Leaf midrib turns red; split stalk shows red tissue with white patches and a sour smell"],
+          ["Smut", "A black whip-like shoot emerges from the top of the cane"],
+          ["Wilt", "Canes dry and become hollow with a fermented smell"],
+          ["Grassy shoot", "Many thin, pale grass-like shoots from the base"]
+        ],
+        pests: [
+          ["Early shoot borer", "Dead hearts in young shoots that pull out easily with a bad smell"],
+          ["Internode borer", "Bore holes in the internodes of the cane"],
+          ["Woolly aphid", "White cotton-like insects under leaves; leaves turn yellow"],
+          ["Termites and white grubs", "Setts and roots are eaten; clumps dry out"]
+        ],
+        management: [
+          "Plant healthy, disease-free setts from a reliable source and use treatment methods advised by your agriculture office.",
+          "Choose resistant varieties; remove and destroy infected clumps immediately.",
+          "Spread dry trash as mulch to save water and suppress weeds.",
+          "Earth up the plants to reduce lodging and borer damage.",
+          "Keep drainage good and rotate with another crop after ratoons."
+        ]
+      },
+      {
+        name: "Tomato",
+        aliases: ["tomato", "tamatar"],
+        facts: [
+          ["Season", "Year-round in many regions; main seasons Kharif, Rabi and summer"],
+          ["Duration", "About 90 to 140 days from transplanting, with repeated pickings"],
+          ["Climate & soil", "Warm weather (20 to 30 °C); well-drained loam. Very hot or cold nights cause flower drop"]
+        ],
+        stages: ["Nursery (25 to 30 days)", "Transplanting", "Vegetative growth", "Flowering", "Fruit set", "Ripening and harvest"],
+        diseases: [
+          ["Early blight", "Brown spots with ring patterns on older leaves"],
+          ["Late blight", "Dark water-soaked patches on leaves and fruit, worst in cool, wet weather"],
+          ["Leaf curl virus", "Leaves curl and shrink; stunted plant; spread by whitefly"],
+          ["Bacterial wilt", "Sudden wilting of green plants; stem shows brown vascular tissue"],
+          ["Blossom end rot", "Dark sunken patch at fruit bottom; caused by uneven watering and calcium shortage"]
+        ],
+        pests: [
+          ["Fruit borer", "Round holes in fruits with a caterpillar inside"],
+          ["Whitefly", "Tiny white insects under leaves; sticky leaves and virus spread"],
+          ["Leaf miner (Tuta absoluta)", "White winding tunnels in leaves and damaged fruits"],
+          ["Spider mites", "Fine webbing and speckled yellow leaves in hot, dry weather"]
+        ],
+        management: [
+          "Raise seedlings in a clean nursery, under insect-proof net if possible.",
+          "Do not plant tomato, potato, brinjal or chilli in the same field repeatedly.",
+          "Stake the plants and use drip irrigation; avoid wetting the leaves.",
+          "Use yellow sticky traps and pheromone traps for monitoring.",
+          "Remove and destroy diseased plants early and keep irrigation even to prevent blossom end rot."
+        ]
+      },
+      {
+        name: "Potato",
+        aliases: ["potato", "aloo", "alugadde"],
+        facts: [
+          ["Season", "Rabi in plains (October to November planting); summer or Kharif in hills"],
+          ["Duration", "About 90 to 120 days"],
+          ["Climate & soil", "Cool weather; loose, well-drained sandy loam"]
+        ],
+        stages: ["Sprouting", "Vegetative growth", "Tuber initiation", "Tuber bulking", "Maturity and haulm drying"],
+        diseases: [
+          ["Late blight", "Dark brown water-soaked patches on leaves with white growth below; spreads quickly in cool, cloudy, humid weather"],
+          ["Early blight", "Brown concentric-ring spots on older leaves"],
+          ["Common scab", "Rough corky patches on tuber skin"],
+          ["Black scurf", "Black crust-like specks on tubers and sprout damage"],
+          ["Bacterial wilt", "Plants wilt suddenly; tubers show brown ring and ooze"]
+        ],
+        pests: [
+          ["Aphids", "Colonies on leaf undersides; they spread virus diseases"],
+          ["Cutworms", "Young plants cut off at ground level at night"],
+          ["White grubs", "Holes and tunnels in tubers; roots eaten"],
+          ["Potato tuber moth", "Tunnels inside tubers in the field and in store"]
+        ],
+        management: [
+          "Plant certified, disease-free seed tubers.",
+          "Earth up the plants so tubers stay covered and are not exposed to light or moths.",
+          "Rotate crops and avoid waterlogged fields.",
+          "Watch the weather: when it turns cool, cloudy and humid, check for late blight every few days.",
+          "Cut haulms before harvest, cure tubers and store in a cool, ventilated place."
+        ]
+      },
+      {
+        name: "Onion",
+        aliases: ["onion", "pyaz", "eerulli", "ulli"],
+        facts: [
+          ["Season", "Mainly Rabi; Kharif crop is also grown in many regions"],
+          ["Duration", "About 100 to 150 days"],
+          ["Climate & soil", "Cool weather during growth and dry weather at maturity; well-drained loam"]
+        ],
+        stages: ["Nursery", "Transplanting", "Leaf growth", "Bulb initiation", "Bulb development", "Maturity (tops fall over)"],
+        diseases: [
+          ["Purple blotch", "Small white sunken spots with purple centres on leaves and flower stalks"],
+          ["Stemphylium blight", "Yellow-orange streaks on leaves that turn brown and dry"],
+          ["Downy mildew", "Pale oval patches with purple-grey fuzz in cool, humid weather"],
+          ["Basal rot", "Roots rot and bulbs soften at the base; plants yellow and die"],
+          ["Neck rot (storage)", "Bulbs become soft and grey at the neck during storage"]
+        ],
+        pests: [
+          ["Thrips", "Silvery-white streaks on leaves; tips curl and dry"],
+          ["Onion maggot", "Seedlings wilt; maggots inside the bulb base"],
+          ["Cutworms", "Young plants cut at the base"]
+        ],
+        management: [
+          "Use healthy seedlings, well-drained beds and rotate with non-onion crops (not garlic).",
+          "Do not over-apply nitrogen; it makes bulbs soft and increases disease.",
+          "Stop irrigation about 10 to 15 days before harvest.",
+          "Cure bulbs in shade for several days before storing in a dry, ventilated place.",
+          "Use blue or yellow sticky traps to monitor thrips."
+        ]
+      },
+      {
+        name: "Chilli",
+        aliases: ["chilli", "chili", "chilly", "mirch", "menasinakai", "mirchi"],
+        facts: [
+          ["Season", "Kharif and Rabi; transplanted after 35 to 45 days in the nursery"],
+          ["Duration", "About 150 to 180 days, with several pickings"],
+          ["Climate & soil", "Warm climate; well-drained loam; sensitive to waterlogging and drought"]
+        ],
+        stages: ["Nursery", "Transplanting", "Vegetative growth", "Flowering", "Fruit set", "Picking"],
+        diseases: [
+          ["Damping-off", "Seedlings rot at ground level and collapse in the nursery"],
+          ["Anthracnose / fruit rot", "Sunken dark spots on ripe fruits; twigs dry from the tip"],
+          ["Leaf curl complex", "Leaves curl upward, shrink and plants are stunted"],
+          ["Powdery mildew", "White powder on the underside of leaves with yellow patches on top"]
+        ],
+        pests: [
+          ["Thrips", "Leaves curl upward, silvery scraping marks, flowers drop"],
+          ["Yellow mite", "Leaves curl downward and become narrow and leathery"],
+          ["Fruit borer", "Holes in green fruit with a caterpillar inside"],
+          ["Aphids and whitefly", "Sticky leaves and virus spread"]
+        ],
+        management: [
+          "Raise seedlings on raised beds with treated, clean seed.",
+          "Rotate with cereals and avoid planting after other solanaceous crops.",
+          "Mulch and irrigate evenly; avoid water stress and waterlogging.",
+          "Remove and destroy plants showing leaf curl early.",
+          "Use sticky traps to monitor and avoid unnecessary spraying."
+        ]
+      },
+      {
+        name: "Groundnut (Peanut)",
+        aliases: ["groundnut", "peanut", "peanuts", "moongfali", "kadlekai", "ground nut"],
+        facts: [
+          ["Season", "Kharif (June to July); also Rabi and summer with irrigation"],
+          ["Duration", "About 100 to 130 days"],
+          ["Climate & soil", "Warm weather; light, well-drained sandy loam with good calcium"]
+        ],
+        stages: ["Germination", "Vegetative growth", "Flowering", "Pegging (pods enter soil)", "Pod development", "Maturity"],
+        diseases: [
+          ["Early and late leaf spot (tikka)", "Brown to black round spots on leaves; leaves fall early"],
+          ["Rust", "Orange-brown pustules mainly on the underside of leaves"],
+          ["Collar rot", "Seedlings rot at the collar and collapse, often with black mould"],
+          ["Aflatoxin contamination", "Mould on pods and kernels, especially after drought and poor drying"],
+          ["Bud necrosis", "Dying growing tips and stunted plants (virus spread by thrips)"]
+        ],
+        pests: [
+          ["Leaf miner", "Brown blotches with tunnels in leaflets, leaves roll"],
+          ["Tobacco caterpillar (Spodoptera)", "Large irregular holes in leaves; caterpillars feed at night"],
+          ["Aphids and thrips", "Curled leaves, stunted growth, virus spread"],
+          ["White grub and termites", "Roots, pegs and pods eaten; plants wilt in patches"]
+        ],
+        management: [
+          "Use healthy, treated seed and sow at the right time.",
+          "Apply gypsum at flowering if recommended for your soil; calcium supports pod filling.",
+          "Avoid drought stress at pegging and pod development.",
+          "Rotate with cereals such as ragi or maize.",
+          "Dry pods fully after harvest and store in a dry place to reduce aflatoxin."
+        ]
+      },
+      {
+        name: "Ragi (Finger Millet)",
+        aliases: ["ragi", "finger millet", "nachni", "mandua"],
+        facts: [
+          ["Season", "Mainly Kharif (June to August); also summer in some areas"],
+          ["Duration", "About 100 to 120 days"],
+          ["Climate & soil", "Tolerates drought well; red loam or light soils, avoid waterlogging"]
+        ],
+        stages: ["Nursery or direct sowing", "Tillering", "Flag leaf", "Earhead emergence", "Grain filling", "Maturity"],
+        diseases: [
+          ["Blast", "Spindle-shaped leaf spots; neck and finger blast cause grain loss"],
+          ["Foot rot", "Plant base rots and plants fall over"],
+          ["Mosaic virus", "Mottled yellow-green leaves and stunted plants"]
+        ],
+        pests: [
+          ["Pink stem borer", "Dead heart in young plants; white earheads later"],
+          ["Aphids", "Colonies on leaves and earheads, sticky honeydew"],
+          ["Grasshoppers", "Leaves chewed from the edges"]
+        ],
+        management: [
+          "Use improved, blast-tolerant varieties and treat seed before sowing.",
+          "Sow in lines and thin plants for good air movement.",
+          "Intercrop with pulses such as red gram or field bean to improve income and soil.",
+          "Weed in the first 30 days; avoid injuring roots.",
+          "Rotate fields and remove old plant residue."
+        ]
+      },
+      {
+        name: "Soybean",
+        aliases: ["soybean", "soyabean", "soya", "soya bean"],
+        facts: [
+          ["Season", "Kharif; sown June to July with the monsoon"],
+          ["Duration", "About 90 to 110 days"],
+          ["Climate & soil", "Warm, moist weather; well-drained medium to heavy soil"]
+        ],
+        stages: ["Germination", "Vegetative growth", "Flowering", "Pod formation", "Seed filling", "Maturity"],
+        diseases: [
+          ["Yellow mosaic virus", "Bright yellow patches on leaves; spread by whitefly"],
+          ["Soybean rust", "Tiny brown pustules under leaves in humid weather"],
+          ["Charcoal rot", "Plants dry suddenly in hot, dry spells; grey-black specks at the stem base"],
+          ["Bacterial pustule", "Small raised pustules on leaves surrounded by yellow halos"]
+        ],
+        pests: [
+          ["Girdle beetle", "Stem girdled by two rings; top portion wilts and dries"],
+          ["Stem fly", "Seedlings dry; maggots inside stems"],
+          ["Semilooper and tobacco caterpillar", "Leaves eaten, leaving only veins"],
+          ["Whitefly", "Spreads yellow mosaic virus"]
+        ],
+        management: [
+          "Treat seed and inoculate with Rhizobium culture as advised for better root nodules.",
+          "Sow on ridges and furrows or raised beds to avoid waterlogging.",
+          "Choose resistant varieties for your area and sow within the recommended window.",
+          "Rotate with cereals and remove infected plants early.",
+          "Use pheromone and sticky traps to monitor pests."
+        ]
+      },
+      {
+        name: "Banana",
+        aliases: ["banana", "kela", "bale", "balehannu"],
+        facts: [
+          ["Season", "Planted around the year in warm regions; avoid extreme heat and cold"],
+          ["Duration", "About 11 to 14 months from planting to the first harvest"],
+          ["Climate & soil", "Warm, humid climate; deep, fertile, well-drained loam"]
+        ],
+        stages: ["Planting (tissue culture or healthy suckers)", "Vegetative growth", "Flower shoot emergence", "Bunch development", "Harvest"],
+        diseases: [
+          ["Panama wilt (Fusarium wilt)", "Older leaves yellow and collapse around the stem; brown inside the pseudostem"],
+          ["Sigatoka leaf spot", "Yellow streaks that turn into brown spots and dry large areas of leaf"],
+          ["Bunchy top virus", "Short, narrow leaves bunched at the top; plants do not fruit"],
+          ["Bacterial wilt", "Yellowing, wilting and ooze from cut stem"]
+        ],
+        pests: [
+          ["Rhizome weevil", "Tunnels inside the rhizome; plant growth is weak and falls over"],
+          ["Pseudostem weevil", "Gummy ooze and tunnels in the pseudostem"],
+          ["Aphids", "Spread bunchy top virus"],
+          ["Nematodes", "Poor roots with lesions; stunted plants"]
+        ],
+        management: [
+          "Plant disease-free tissue-culture plants or carefully selected suckers.",
+          "Avoid fields that had banana wilt; do not move soil or suckers from infected farms.",
+          "Remove infected leaves and dead material; keep only a few healthy suckers.",
+          "Use drip irrigation, mulching and proper nutrition; prop the plants in windy areas.",
+          "Cover bunches to protect fruit, and destroy diseased plants as advised by experts."
+        ]
+      },
+      {
+        name: "Tur (Red Gram / Pigeon Pea)",
+        aliases: ["tur", "toor", "red gram", "redgram", "pigeon pea", "pigeonpea", "arhar", "togari"],
+        facts: [
+          ["Season", "Kharif; sown June to July"],
+          ["Duration", "About 150 to 180 days (long-duration varieties)"],
+          ["Climate & soil", "Warm climate; well-drained loam; tolerates drought but not waterlogging"]
+        ],
+        stages: ["Germination", "Vegetative growth", "Flowering", "Pod formation", "Pod filling", "Maturity"],
+        diseases: [
+          ["Fusarium wilt", "Plants yellow and dry; dark streaks in the stem"],
+          ["Sterility mosaic", "Bushy, pale plants with small leaves and no flowers or pods"],
+          ["Phytophthora blight", "Water-soaked lesions on stems; plants break and dry in waterlogged fields"]
+        ],
+        pests: [
+          ["Pod borer (Helicoverpa)", "Holes in pods and flowers with a caterpillar inside"],
+          ["Pod fly", "Tiny maggots inside seeds; pods look healthy but seeds are damaged"],
+          ["Plume moth", "Small holes in pods and green seeds eaten"]
+        ],
+        management: [
+          "Use wilt-resistant and sterility-mosaic tolerant varieties for your area.",
+          "Treat seed and sow on ridges to keep water from standing.",
+          "Grow as an intercrop with ragi, sorghum or other crops to spread risk.",
+          "Remove plants with sterility mosaic early and destroy them.",
+          "Monitor pod borers with pheromone traps and install bird perches."
+        ]
+      }
+    ];
+
+    // Crop names in Kannada, Hindi, Telugu and Tamil so visitors can type
+    // the crop name in their own language.
+    const NATIVE_ALIASES = {
+      "Rice (Paddy)": [
+            "ಅಕ್ಕಿ",
+            "ಭತ್ತ",
+            "चावल",
+            "धान",
+            "బియ్యం",
+            "వరి",
+            "அரிசி",
+            "நெல்"
+      ],
+      "Wheat": [
+            "ಗೋಧಿ",
+            "गेहूं",
+            "गेहूँ",
+            "గోధుమ",
+            "கோதுமை"
+      ],
+      "Maize (Corn)": [
+            "ಮೆಕ್ಕೆಜೋಳ",
+            "मक्का",
+            "మొక్కజొన్న",
+            "மக்காச்சோளம்"
+      ],
+      "Cotton": [
+            "ಹತ್ತಿ",
+            "कपास",
+            "పత్తి",
+            "பருத்தி"
+      ],
+      "Sugarcane": [
+            "ಕಬ್ಬು",
+            "गन्ना",
+            "చెరకు",
+            "கரும்பு"
+      ],
+      "Tomato": [
+            "ಟೊಮೆಟೊ",
+            "ಟೊಮ್ಯಾಟೊ",
+            "टमाटर",
+            "టమాటా",
+            "టమోటా",
+            "தக்காளி"
+      ],
+      "Potato": [
+            "ಆಲೂಗಡ್ಡೆ",
+            "आलू",
+            "బంగాళాదుంప",
+            "உருளைக்கிழங்கு"
+      ],
+      "Onion": [
+            "ಈರುಳ್ಳಿ",
+            "प्याज",
+            "ఉల్లిపాయ",
+            "வெங்காயம்"
+      ],
+      "Chilli": [
+            "ಮೆಣಸಿನಕಾಯಿ",
+            "मिर्च",
+            "మిరపకాయ",
+            "మిర్చి",
+            "மிளகாய்"
+      ],
+      "Groundnut (Peanut)": [
+            "ಕಡಲೆಕಾಯಿ",
+            "मूंगफली",
+            "వేరుశనగ",
+            "நிலக்கடலை"
+      ],
+      "Ragi (Finger Millet)": [
+            "ರಾಗಿ",
+            "रागी",
+            "मंडुआ",
+            "రాగులు",
+            "రాగి",
+            "கேழ்வரகு"
+      ],
+      "Soybean": [
+            "ಸೋಯಾಬೀನ್",
+            "सोयाबीन",
+            "సోయాబీన్",
+            "சோயா",
+            "சோயாபீன்"
+      ],
+      "Banana": [
+            "ಬಾಳೆ",
+            "ಬಾಳೆಹಣ್ಣು",
+            "केला",
+            "అరటి",
+            "வாழை"
+      ],
+      "Tur (Red Gram / Pigeon Pea)": [
+            "ತೊಗರಿ",
+            "अरहर",
+            "तुअर",
+            "కందులు",
+            "కంది",
+            "துவரை"
+      ]
+};
+    CROPS.forEach(function (crop) {
+      (NATIVE_ALIASES[crop.name] || []).forEach(function (alias) {
+        crop.aliases.push(alias);
+      });
+    });
+
+    // ===== Crop finder behaviour =====
+    // The finder asks the FarmConnect API (/api/crops) for its data. If the
+    // API is not reachable (for example the file was opened directly), it
+    // falls back to the CROPS list built into this file.
+    (function () {
+      const form = document.getElementById("cropForm");
+      const input = document.getElementById("cropInput");
+      const results = document.getElementById("cropResults");
+      const chips = document.getElementById("cropChips");
+      const list = document.getElementById("cropList");
+
+      function el(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      }
+
+      function shortName(crop) {
+        return crop.shortName || crop.name.replace(/\s*\(.*\)/, "");
+      }
+
+      // ----- Data access: API first, built-in list as a fallback -----
+      function localFind(query) {
+        const q = query.trim().toLowerCase();
+        if (!q) return [];
+
+        const exact = CROPS.filter(function (c) {
+          return c.aliases.indexOf(q) !== -1 || c.name.toLowerCase() === q;
+        });
+        if (exact.length) return exact;
+
+        return CROPS.filter(function (c) {
+          return c.name.toLowerCase().indexOf(q) !== -1 ||
+            c.aliases.some(function (a) {
+              return a.indexOf(q) !== -1 || (q.length > 3 && q.indexOf(a) !== -1);
+            });
+        });
+      }
+
+      async function searchCrops(query) {
+        try {
+          const response = await fetch(
+            "/api/crops/search?q=" + encodeURIComponent(query)
+          );
+          if (!response.ok) throw new Error("API error");
+          const data = await response.json();
+          if (!data || data.ok !== true || !Array.isArray(data.matches)) {
+            throw new Error("Unexpected API response");
+          }
+          return { matches: data.matches, source: "api" };
+        } catch (error) {
+          return { matches: localFind(query), source: "local" };
+        }
+      }
+
+      async function loadCropNames() {
+        try {
+          const response = await fetch("/api/crops");
+          if (!response.ok) throw new Error("API error");
+          const data = await response.json();
+          if (!data || data.ok !== true || !Array.isArray(data.crops)) {
+            throw new Error("Unexpected API response");
+          }
+          return data.crops;
+        } catch (error) {
+          return CROPS.map(function (c) {
+            return { name: c.name, shortName: shortName(c) };
+          });
+        }
+      }
+
+      // ----- Display -----
+      function block(title, icon) {
+        const wrap = el("div", "guide-block");
+        wrap.appendChild(el("h4", "", icon + " " + title));
+        return wrap;
+      }
+
+      function pairList(items) {
+        const ul = el("ul", "guide-list");
+        items.forEach(function (pair) {
+          const li = document.createElement("li");
+          li.appendChild(el("strong", "", pair[0]));
+          li.appendChild(el("span", "", " — " + pair[1]));
+          ul.appendChild(li);
+        });
+        return ul;
+      }
+
+      // ----- Live "About this crop" summary from the Wikipedia REST API -----
+      // Free public API (no key). If it cannot be reached, the box is simply
+      // removed and the rest of the guidance still shows.
+      const WIKI_TITLES = {
+        "Rice": "Rice", "Wheat": "Wheat", "Maize": "Maize", "Cotton": "Cotton",
+        "Sugarcane": "Sugarcane", "Tomato": "Tomato", "Potato": "Potato",
+        "Onion": "Onion", "Chilli": "Chili_pepper", "Groundnut": "Peanut",
+        "Ragi": "Finger_millet", "Soybean": "Soybean", "Banana": "Banana",
+        "Tur": "Pigeon_pea"
+      };
+      let currentToken = 0;
+
+      async function loadAbout(crop, box, token) {
+        const title = WIKI_TITLES[shortName(crop)];
+        if (!title) { box.remove(); return; }
+
+        try {
+          const response = await fetch(
+            "https://en.wikipedia.org/api/rest_v1/page/summary/" +
+            encodeURIComponent(title)
+          );
+          if (!response.ok) throw new Error("Wikipedia error");
+          const data = await response.json();
+          if (token !== currentToken || !data.extract) {
+            if (token === currentToken) box.remove();
+            return;
+          }
+
+          let text = data.extract;
+          if (text.length > 420) {
+            const cut = text.lastIndexOf(". ", 420);
+            text = cut > 150 ? text.slice(0, cut + 1) : text.slice(0, 417) + "...";
+          }
+
+          box.innerHTML = "";
+          if (data.thumbnail && data.thumbnail.source) {
+            const img = document.createElement("img");
+            img.src = data.thumbnail.source;
+            img.alt = crop.name;
+            box.appendChild(img);
+          }
+          const info = el("div");
+          info.appendChild(el("p", "", text));
+          const url = data.content_urls && data.content_urls.desktop &&
+            data.content_urls.desktop.page;
+          if (url) {
+            const link = el("a", "", "Read more on Wikipedia");
+            link.href = url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            info.appendChild(link);
+          }
+          box.appendChild(info);
+        } catch (error) {
+          if (token === currentToken) box.remove();
+        }
+      }
+
+      function showCrop(crop, source) {
+        results.innerHTML = "";
+
+        const token = ++currentToken;
+        const card = el("div", "crop-result");
+        card.appendChild(el("h3", "", crop.name));
+
+        const aboutBox = el("div", "about-crop");
+        aboutBox.appendChild(el("p", "", "Loading crop overview..."));
+        card.appendChild(aboutBox);
+
+        const grid = el("div", "guide-grid");
+
+        // 1. Growth
+        const growth = block("Crop Growth", "🌱");
+        const factList = el("ul", "guide-list");
+        crop.facts.forEach(function (f) {
+          const li = document.createElement("li");
+          li.appendChild(el("strong", "", f[0] + ": "));
+          li.appendChild(el("span", "", f[1]));
+          factList.appendChild(li);
+        });
+        growth.appendChild(factList);
+        growth.appendChild(el("p", "stage-title", "Growth stages"));
+        const stages = el("ol", "stage-list");
+        crop.stages.forEach(function (s) {
+          stages.appendChild(el("li", "", s));
+        });
+        growth.appendChild(stages);
+        grid.appendChild(growth);
+
+        // 2. Diseases
+        const diseases = block("Common Diseases", "🍂");
+        diseases.appendChild(pairList(crop.diseases));
+        grid.appendChild(diseases);
+
+        // 3. Pests
+        const pests = block("Pest Identification", "🐛");
+        pests.appendChild(pairList(crop.pests));
+        grid.appendChild(pests);
+
+        // 4. Management
+        const mgmt = block("Crop Management", "🚜");
+        const ul = el("ul", "guide-list");
+        crop.management.forEach(function (m) {
+          ul.appendChild(el("li", "", m));
+        });
+        mgmt.appendChild(ul);
+        grid.appendChild(mgmt);
+
+        card.appendChild(grid);
+
+        const note = el("div", "notice");
+        note.appendChild(el("strong", "", "Safety notice: "));
+        note.appendChild(document.createTextNode(
+          "This is general information only. It does not recommend any " +
+          "pesticide or dose. Before treating a problem, confirm it with your " +
+          "local Krishi Vigyan Kendra or agriculture officer and follow the " +
+          "approved product label."
+        ));
+        card.appendChild(note);
+
+        card.appendChild(el(
+          "p",
+          "source-note",
+          source === "api"
+            ? "Data source: FarmConnect API"
+            : "Data source: built-in guide (FarmConnect API not connected)"
+        ));
+
+        results.appendChild(card);
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+        loadAbout(crop, aboutBox, token);
+      }
+
+      function showMessage(text) {
+        results.innerHTML = "";
+        const box = el("div", "crop-empty");
+        box.appendChild(el("p", "", text));
+        results.appendChild(box);
+      }
+
+      async function runSearch(query) {
+        query = query.trim();
+
+        if (!query) {
+          showMessage("Please type a crop name, for example rice, tomato or cotton.");
+          return;
+        }
+
+        showMessage("Searching...");
+        const found = await searchCrops(query);
+        const matches = found.matches;
+
+        if (matches.length === 1) {
+          showCrop(matches[0], found.source);
+        } else if (matches.length > 1) {
+          results.innerHTML = "";
+          const box = el("div", "crop-empty");
+          box.appendChild(el("p", "", "Several crops match \"" + query + "\". Choose one:"));
+          const row = el("div", "chips");
+          matches.forEach(function (crop) {
+            const b = el("button", "chip", crop.name);
+            b.type = "button";
+            b.addEventListener("click", function () {
+              showCrop(crop, found.source);
+            });
+            row.appendChild(b);
+          });
+          box.appendChild(row);
+          results.appendChild(box);
+        } else {
+          showMessage(
+            "No guidance is available for \"" + query + "\" yet. Try one of the " +
+            "crops above, or contact your local Krishi Vigyan Kendra for advice."
+          );
+        }
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        runSearch(input.value);
+      });
+
+      // Suggestions list and quick-pick buttons.
+      loadCropNames().then(function (crops) {
+        crops.forEach(function (crop) {
+          const label = shortName(crop);
+
+          const option = document.createElement("option");
+          option.value = label;
+          list.appendChild(option);
+
+          const chip = el("button", "chip", label);
+          chip.type = "button";
+          chip.addEventListener("click", function () {
+            input.value = label;
+            runSearch(label);
+          });
+          chips.appendChild(chip);
+        });
+      });
+    })();
+
+    // ===== Language switcher (Google Translate) =====
+    // The globe button in the header translates the whole page, including the
+    // crop guidance results, into Kannada, Hindi, Telugu or Tamil. The Google
+    // Translate script is only loaded the first time a language is chosen, and
+    // it needs an internet connection.
+    const LANGS = {
+      en: { label: "EN",      voice: "en-IN" },
+      kn: { label: "ಕನ್ನಡ",   voice: "kn-IN" },
+      hi: { label: "हिन्दी",    voice: "hi-IN" },
+      te: { label: "తెలుగు",   voice: "te-IN" },
+      ta: { label: "தமிழ்",   voice: "ta-IN" }
+    };
+    const LANG_KEY = "farmconnectLang";
+
+    const langButton = document.getElementById("langButton");
+    const langMenu = document.getElementById("langMenu");
+    const langCurrent = document.getElementById("langCurrent");
+    const langStatus = document.getElementById("langStatus");
+    let currentLang = "en";
+    let translatorState = "idle"; // idle | loading | failed
+    let statusTimer = null;
+
+    // Called by the Google script once it has loaded.
+    window.googleTranslateElementInit = function () {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          includedLanguages: "en,kn,hi,te,ta",
+          autoDisplay: false
+        },
+        "google_translate_element"
+      );
+    };
+
+    function showStatus(text, autoHideMs) {
+      clearTimeout(statusTimer);
+      langStatus.textContent = text;
+      langStatus.classList.add("show");
+      if (autoHideMs) {
+        statusTimer = setTimeout(function () {
+          langStatus.classList.remove("show");
+        }, autoHideMs);
+      }
+    }
+
+    function hideStatus() {
+      clearTimeout(statusTimer);
+      langStatus.classList.remove("show");
+    }
+
+    function getCombo() {
+      return document.querySelector(".goog-te-combo");
+    }
+
+    function loadTranslator() {
+      return new Promise(function (resolve, reject) {
+        if (getCombo()) {
+          resolve();
+          return;
+        }
+
+        if (translatorState !== "loading") {
+          translatorState = "loading";
+          const script = document.createElement("script");
+          script.src =
+            "https://translate.google.com/translate_a/element.js" +
+            "?cb=googleTranslateElementInit";
+          script.async = true;
+          script.onerror = function () {
+            translatorState = "failed";
+          };
+          document.head.appendChild(script);
+        }
+
+        let tries = 0;
+        const timer = setInterval(function () {
+          if (getCombo()) {
+            clearInterval(timer);
+            translatorState = "idle";
+            resolve();
+          } else if (translatorState === "failed" || ++tries > 80) {
+            clearInterval(timer);
+            translatorState = "idle";
+            reject(new Error("Translator unavailable"));
+          }
+        }, 150);
+      });
+    }
+
+    function clearTranslateCookie() {
+      const expired = "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+      document.cookie = "googtrans" + expired;
+      document.cookie = "googtrans" + expired + "; domain=" + location.hostname;
+    }
+
+    function restoreEnglish() {
+      const combo = getCombo();
+      if (!combo) return; // nothing was ever translated on this page
+
+      combo.value = "en";
+      combo.dispatchEvent(new Event("change", { bubbles: true }));
+
+      // If the page is still translated, reload it to get the original back.
+      setTimeout(function () {
+        const root = document.documentElement.classList;
+        if (root.contains("translated-ltr") || root.contains("translated-rtl")) {
+          clearTranslateCookie();
+          location.reload();
+        }
+      }, 700);
+    }
+
+    function updateSwitcher() {
+      langCurrent.textContent = LANGS[currentLang].label;
+      langMenu.querySelectorAll("button[data-lang]").forEach(function (b) {
+        const on = b.getAttribute("data-lang") === currentLang;
+        b.classList.toggle("selected", on);
+        b.setAttribute("aria-checked", on ? "true" : "false");
+      });
+
+      // Keep the voice assistant's language in step with the page language.
+      languageSelect.value = LANGS[currentLang].voice;
+    }
+
+    function rememberLanguage() {
+      try { localStorage.setItem(LANG_KEY, currentLang); } catch (e) { /* ignore */ }
+    }
+
+    async function setLanguage(code) {
+      if (!LANGS[code]) return;
+
+      currentLang = code;
+      rememberLanguage();
+      updateSwitcher();
+
+      if (code === "en") {
+        hideStatus();
+        restoreEnglish();
+        return;
+      }
+
+      showStatus("Translating...");
+
+      try {
+        await loadTranslator();
+        const combo = getCombo();
+        combo.value = code;
+        combo.dispatchEvent(new Event("change", { bubbles: true }));
+        showStatus("Page translated by Google Translate", 2500);
+      } catch (error) {
+        currentLang = "en";
+        rememberLanguage();
+        updateSwitcher();
+        showStatus(
+          "Translation needs an internet connection. Please try again.",
+          4000
+        );
+      }
+    }
+
+    function closeLangMenu() {
+      langMenu.hidden = true;
+      langButton.setAttribute("aria-expanded", "false");
+    }
+
+    langButton.addEventListener("click", function (event) {
+      event.stopPropagation();
+      const open = langMenu.hidden;
+      langMenu.hidden = !open;
+      langButton.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    langMenu.addEventListener("click", function (event) {
+      const option = event.target.closest("button[data-lang]");
+      if (!option) return;
+      closeLangMenu();
+      setLanguage(option.getAttribute("data-lang"));
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!langMenu.hidden && !event.target.closest(".lang-switcher")) {
+        closeLangMenu();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !langMenu.hidden) {
+        closeLangMenu();
+        langButton.focus();
+      }
+    });
+
+    // Re-apply the language the visitor chose last time.
+    (function () {
+      let saved = "en";
+      try { saved = localStorage.getItem(LANG_KEY) || "en"; } catch (e) { /* ignore */ }
+      updateSwitcher();
+      if (saved !== "en" && LANGS[saved]) {
+        setLanguage(saved);
+      }
+    })();
+
+    // If an image file is missing, hide it instead of showing a broken icon.
+    document.querySelectorAll("img").forEach(function (img) {
+      img.addEventListener("error", function () {
+        img.style.display = "none";
+      });
+    });
+
+
+    // ===== Machinery owners page =====
+    // Loads owners from the backend (GET /api/owners) when a server is running.
+    // Otherwise it shows the SAMPLE list below. Replace the names, villages,
+    // phone numbers and rates with your real owners (or connect /api/owners).
+    // Each entry: name, equipment, model, village, phone (10 digits),
+    // ratePerHour (rupees), availableFor ("Rent", "Lease").
+    const SAMPLE_OWNERS = [
+      { name: "Ramesh Gowda",     equipment: "Tractor",    model: "Mahindra 575 DI (45 HP)",    village: "Hosahalli",     phone: "9800000101", ratePerHour: 700,  availableFor: ["Rent", "Lease"] },
+      { name: "Basavaraj Patil",  equipment: "Tractor",    model: "John Deere 5050 D (50 HP)",  village: "Savanur",       phone: "9800000102", ratePerHour: 850,  availableFor: ["Rent"] },
+      { name: "Manjunath S.",     equipment: "Tractor",    model: "Swaraj 744 FE (48 HP)",      village: "Channapatna",   phone: "9800000103", ratePerHour: 650,  availableFor: ["Rent", "Lease"] },
+      { name: "Venkatesh Reddy",  equipment: "Harvester",  model: "Combine harvester (paddy)",  village: "Maddur",        phone: "9800000104", ratePerHour: 2200, availableFor: ["Rent"] },
+      { name: "Shivanna",         equipment: "Harvester",  model: "Combine harvester (wheat)",  village: "Hiriyur",       phone: "9800000105", ratePerHour: 2500, availableFor: ["Rent", "Lease"] },
+      { name: "Lakshmamma",       equipment: "Rotavator",  model: "7 ft rotavator",             village: "Kaggalipura",   phone: "9800000106", ratePerHour: 550,  availableFor: ["Rent"] },
+      { name: "Mahesh Naik",      equipment: "Rotavator",  model: "6 ft rotavator",             village: "Honnali",       phone: "9800000107", ratePerHour: 500,  availableFor: ["Rent", "Lease"] },
+      { name: "Prakash Hegde",    equipment: "Seed Drill", model: "9-row seed drill",           village: "Sakleshpur",    phone: "9800000108", ratePerHour: 450,  availableFor: ["Rent"] },
+      { name: "Nagaraj",          equipment: "Seed Drill", model: "11-row seed cum fertilizer", village: "Devanahalli",   phone: "9800000109", ratePerHour: 500,  availableFor: ["Rent", "Lease"] },
+      { name: "Annapurna",        equipment: "Sprayer",    model: "Tractor-mounted boom sprayer", village: "Byadgi",      phone: "9800000110", ratePerHour: 400,  availableFor: ["Rent"] },
+      { name: "Suresh Kumar",     equipment: "Sprayer",    model: "Power knapsack sprayer",     village: "Doddaballapur", phone: "9800000111", ratePerHour: 250,  availableFor: ["Rent", "Lease"] },
+      { name: "Siddappa",         equipment: "Other",      model: "Power tiller",               village: "Kunigal",       phone: "9800000112", ratePerHour: 450,  availableFor: ["Rent"] },
+      { name: "Mallikarjun",      equipment: "Other",      model: "Diesel water pump (5 HP)",   village: "Mulbagal",      phone: "9800000113", ratePerHour: 150,  availableFor: ["Rent", "Lease"] }
+    ];
+
+    (function () {
+      const grid = document.getElementById("ownerGrid");
+      const count = document.getElementById("ownerCount");
+      const source = document.getElementById("ownerSource");
+      const banner = document.getElementById("requestBanner");
+      const equipSel = document.getElementById("ownerEquip");
+      const villageInput = document.getElementById("ownerVillage");
+      const sortSel = document.getElementById("ownerSort");
+
+      let owners = SAMPLE_OWNERS;
+      let sourceName = "sample";
+      let loaded = false;
+
+      function el(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      }
+
+      function formatPhone(p) {
+        const d = String(p).replace(/\D/g, "").slice(-10);
+        return d.length === 10 ? d.slice(0, 5) + " " + d.slice(5) : String(p);
+      }
+
+      function telLink(p) {
+        const d = String(p).replace(/\D/g, "").slice(-10);
+        return "tel:+91" + d;
+      }
+
+      async function loadOwners() {
+        if (loaded) return;
+        loaded = true;
+        try {
+          const response = await fetch("/api/owners");
+          if (!response.ok) throw new Error("API error");
+          const data = await response.json();
+          if (!data || data.ok !== true || !Array.isArray(data.owners)) {
+            throw new Error("Unexpected API response");
+          }
+          owners = data.owners;
+          sourceName = "api";
+        } catch (error) {
+          owners = SAMPLE_OWNERS;
+          sourceName = "sample";
+        }
+      }
+
+      function render() {
+        const equip = equipSel.value;
+        const q = villageInput.value.trim().toLowerCase();
+
+        let list = owners.filter(function (o) {
+          const matchEquip = !equip || o.equipment === equip;
+          const matchText = !q ||
+            String(o.village).toLowerCase().indexOf(q) !== -1 ||
+            String(o.name).toLowerCase().indexOf(q) !== -1;
+          return matchEquip && matchText;
+        });
+
+        const mode = sortSel.value;
+        list = list.slice().sort(function (a, b) {
+          if (mode === "high") return b.ratePerHour - a.ratePerHour;
+          if (mode === "village") return String(a.village).localeCompare(String(b.village));
+          return a.ratePerHour - b.ratePerHour;
+        });
+
+        grid.innerHTML = "";
+        count.textContent = list.length
+          ? "Showing " + list.length + " owner" + (list.length === 1 ? "" : "s")
+          : "";
+
+        if (!list.length) {
+          grid.appendChild(el("div", "owner-empty",
+            "No owners found for this search. Try another village or choose All machinery."));
+        }
+
+        list.forEach(function (o) {
+          const card = el("article", "owner-card");
+
+          const top = el("div", "owner-top");
+          const left = el("div");
+          left.appendChild(el("h3", "", o.equipment));
+          left.appendChild(el("div", "owner-model", o.model || ""));
+          top.appendChild(left);
+
+          const rate = el("div", "owner-rate");
+          rate.appendChild(el("strong", "", "\u20B9" + Number(o.ratePerHour).toLocaleString("en-IN")));
+          rate.appendChild(el("span", "", "per hour"));
+          top.appendChild(rate);
+          card.appendChild(top);
+
+          const info = el("ul", "owner-info");
+          [["Owner", o.name], ["Village", o.village], ["Phone", formatPhone(o.phone)]].forEach(function (row) {
+            const li = document.createElement("li");
+            li.appendChild(el("b", "", row[0] + ": "));
+            li.appendChild(el("span", "", row[1]));
+            info.appendChild(li);
+          });
+          card.appendChild(info);
+
+          const tags = el("div", "owner-tags");
+          (o.availableFor || []).forEach(function (t) {
+            tags.appendChild(el("span", "owner-tag", t === "Lease" ? "Available for lease" : "Available for rent"));
+          });
+          card.appendChild(tags);
+
+          const call = el("a", "btn owner-call", "Call " + formatPhone(o.phone));
+          call.href = telLink(o.phone);
+          card.appendChild(call);
+
+          grid.appendChild(card);
+        });
+
+        source.textContent = sourceName === "api"
+          ? "Data source: FarmConnect API"
+          : "Sample listing. Names, phone numbers and rates are examples until real owners are connected.";
+      }
+
+      // Called by the router each time the page opens.
+      window.showOwnersPage = async function () {
+        const req = window.lastMachineryRequest;
+
+        if (req) {
+          const known = Array.prototype.some.call(equipSel.options, function (opt) {
+            return opt.value === req.equipment;
+          });
+          equipSel.value = known ? req.equipment : "";
+          villageInput.value = "";
+
+          banner.hidden = false;
+          banner.textContent = "Your " + req.equipment + " request (" + req.rentalType +
+            ") was submitted. Here are owners you can contact directly.";
+          window.lastMachineryRequest = null;
+        } else {
+          banner.hidden = true;
+        }
+
+        await loadOwners();
+        render();
+      };
+
+      equipSel.addEventListener("change", render);
+      villageInput.addEventListener("input", render);
+      sortSel.addEventListener("change", render);
+    })();
+
+    // Page switching (Home / Crop Care / Experts / Machinery Owners) using the URL hash.
+    const pageIds = {
+      "crop-care": "page-crop-care",
+      "experts": "page-experts",
+      "crop-guide": "page-experts",
+      "machinery-list": "page-machinery-list"
+    };
+
+    function route() {
+      const hash = decodeURIComponent(location.hash.slice(1)) || "home";
+      const target = pageIds[hash] || "page-home";
+
+      document.querySelectorAll(".page").forEach(function (page) {
+        page.classList.toggle("active", page.id === target);
+      });
+
+      const navHash = hash === "crop-guide" ? "experts" : hash;
+      document.querySelectorAll("nav a").forEach(function (link) {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === "#" + navHash && !!pageIds[navHash]
+        );
+      });
+
+      if (hash === "machinery-list" && window.showOwnersPage) {
+        window.showOwnersPage();
+      }
+
+      // Opening the finder: scroll to it and put the cursor in the search box.
+      if (hash === "crop-guide") {
+        document.getElementById("crop-guide").scrollIntoView();
+        document.getElementById("cropInput").focus({ preventScroll: true });
+        return;
+      }
+
+      if (target === "page-home" && hash !== "home") {
+        const section = document.getElementById(hash);
+        if (section) {
+          section.scrollIntoView();
+          return;
+        }
+      }
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener("hashchange", route);
+    route();
+
+  </script>
+
+</body>
+</html>
